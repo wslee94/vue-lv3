@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul class="list">
-      <li :key="item.id" v-for="item in data" class="post">
+      <li :key="item.id" v-for="item in list" class="post">
         <div class="points">
           {{ item.points || 0 }}
         </div>
@@ -34,12 +34,10 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-  props: {
-    data: {
-      type: Array,
-      default: [],
-    },
+  computed: {
+    ...mapState(["list"]),
   },
 };
 </script>
