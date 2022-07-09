@@ -1,15 +1,16 @@
 <template>
   <div>
     <section>
-      <div class="user-container">
-        <div><i class="fas fa-user"></i></div>
-        <div class="user-description">
+      <user-profile>
+        <div slot="userName">
           <router-link :to="`/user/${item.user}`">{{ item.user }}</router-link>
-          <div class="time">
-            {{ item.time_ago }}
-          </div>
         </div>
-      </div>
+        <template slot="time">
+          {{ `Posted ${item.time_ago}` }}
+        </template>
+      </user-profile>
+    </section>
+    <section>
       <h2>{{ item.title }}</h2>
     </section>
     <section>
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+import UserProfile from "@/components/UserProfile.vue";
 import { mapState } from "vuex";
 
 export default {
@@ -28,6 +30,9 @@ export default {
   created() {
     const itemId = this.$route.params.id;
     this.$store.dispatch("FETCH_ITEM", itemId);
+  },
+  components: {
+    UserProfile,
   },
 };
 </script>
