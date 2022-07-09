@@ -1,16 +1,12 @@
 <template>
   <div>
-    <p :key="item.id" v-for="item in jobs">
-      <a :href="item.url">
-        {{ item.title }}
-      </a>
-      <small>{{ item.time_ago }} by {{ item.domain }}</small>
-    </p>
+    <list-item :data="jobs"> </list-item>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import ListItem from "../components/ListItem.vue";
 
 export default {
   computed: {
@@ -18,6 +14,9 @@ export default {
   },
   created() {
     this.$store.dispatch("FETCH_JOBS");
+  },
+  components: {
+    ListItem,
   },
 };
 </script>
