@@ -1,9 +1,23 @@
 <template>
-  <div>user</div>
+  <div>
+    <p>id: {{ user.id }}</p>
+    <p>karma: {{ user.karma }}</p>
+    <p>created: {{ user.created }}</p>
+  </div>
 </template>
 
 <script>
-export default {};
+import { mapState } from "vuex";
+
+export default {
+  computed: {
+    ...mapState(["user"]),
+  },
+  created() {
+    const userName = this.$route.params.id;
+    this.$store.dispatch("FETCH_USER", userName);
+  },
+};
 </script>
 
 <style></style>
