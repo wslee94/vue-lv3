@@ -7,13 +7,22 @@
 <script>
 import { mapState } from "vuex";
 import ListItem from "../components/ListItem.vue";
+import bus from "../utils/bus.js";
 
 export default {
   computed: {
     ...mapState(["jobs"]),
   },
   created() {
-    this.$store.dispatch("FETCH_JOBS");
+    bus.$emit("start:spinner");
+    this.$store
+      .dispatch("FETCH_JOBS")
+      .then(() => {
+        bus.$emit("end:spinner");
+      })
+      .catch((err) => {
+        console.log(error);
+      });
   },
   components: {
     ListItem,

@@ -11,6 +11,7 @@ export default {
     fetchNewsList()
       .then(({ data }) => {
         commit("SET_NEWS", data);
+        return data;
       })
       .catch((err) => {
         console.log(err);
@@ -20,6 +21,7 @@ export default {
     fetchJobList()
       .then(({ data }) => {
         commit("SET_JOBS", data);
+        return data;
       })
       .catch((err) => {
         console.log(err);
@@ -29,6 +31,7 @@ export default {
     fetchAskList()
       .then(({ data }) => {
         commit("SET_ASK", data);
+        return data;
       })
       .catch((err) => {
         console.log(err);
