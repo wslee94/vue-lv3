@@ -1,30 +1,16 @@
 <template>
   <div>
-    <list-item :data="news"></list-item>
+    <list-item></list-item>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
 import ListItem from "../components/ListItem.vue";
-import bus from "../utils/bus.js";
+import ListMixin from "../mixins/ListMixin";
 
 export default {
-  computed: {
-    ...mapState(["news"]),
-  },
-  created() {
-    bus.$emit("start:spinner");
-    this.$store
-      .dispatch("FETCH_NEWS")
-      .then(() => {
-        bus.$emit("end:spinner");
-      })
-      .catch((err) => {
-        console.log(error);
-      });
-  },
   components: { ListItem },
+  mixins: [ListMixin],
 };
 </script>
 
