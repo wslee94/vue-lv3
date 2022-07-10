@@ -8,64 +8,58 @@ import {
 } from "../api/index.js";
 
 export default {
-  FETCH_NEWS({ commit }) {
-    return fetchNewsList()
-      .then(({ data }) => {
-        commit("SET_NEWS", data);
-        return data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  async FETCH_NEWS({ commit }) {
+    try {
+      const { data } = await fetchNewsList();
+      commit("SET_NEWS", data);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
   },
-  FETCH_JOBS({ commit }) {
-    return fetchJobList()
-      .then(({ data }) => {
-        commit("SET_JOBS", data);
-        return data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  async FETCH_JOBS({ commit }) {
+    try {
+      const { data } = await fetchJobList();
+      commit("SET_JOBS", data);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
   },
-  FETCH_ASK({ commit }) {
-    return fetchAskList()
-      .then(({ data }) => {
-        commit("SET_ASK", data);
-        return data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  async FETCH_ASK({ commit }) {
+    try {
+      const { data } = await fetchAskList();
+      commit("SET_ASK", data);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
   },
-  FETCH_LIST({ commit }, pageName) {
-    return fetchList(pageName)
-      .then(({ data }) => {
-        commit("SET_LIST", data);
-        return data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  async FETCH_LIST({ commit }, pageName) {
+    try {
+      const { data } = await fetchList(pageName);
+      commit("SET_LIST", data);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
   },
-  FETCH_USER({ commit }, userName) {
-    return fetchUserInfo(userName)
-      .then(({ data }) => {
-        commit("SET_USER", data);
-        return data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  async FETCH_USER({ commit }, userName) {
+    try {
+      const { data } = await fetchUserInfo(userName);
+      commit("SET_USER", data);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
   },
-  FETCH_ITEM({ commit }, itemId) {
-    return fetchItemInfo(itemId)
-      .then(({ data }) => {
-        commit("SET_ITEM", data);
-        return data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  async FETCH_ITEM({ commit }, itemId) {
+    try {
+      const { data } = await fetchItemInfo(itemId);
+      commit("SET_ITEM", data);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
   },
 };
